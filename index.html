@@ -1,0 +1,27 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Crypto Data</title>
+  </head>
+  <body>
+    <h1>Crypto Data</h1>
+    <ul id="crypto-list"></ul>
+
+    <script>
+      async function fetchCryptoData() {
+        const response = await fetch("/get-crypto-data");
+        const data = await response.json();
+
+        const cryptoList = document.getElementById("crypto-list");
+        data.forEach((crypto) => {
+          const listItem = document.createElement("li");
+          listItem.textContent = `${crypto.name}: Last: ${crypto.last}, Buy: ${crypto.buy}, Sell: ${crypto.sell}, Volume: ${crypto.volume}`;
+          cryptoList.appendChild(listItem);
+        });
+      }
+
+      fetchCryptoData();
+    </script>
+  </body>
+</html>
