@@ -5,7 +5,7 @@ const sqlite3 = require("sqlite3");
 const axios = require("axios");
 
 const app = express();
-app.use(express.static(path.join(__dirname, "index.html")));
+
 app.use(express.json());
 const dbPath = path.join(__dirname, "crypto.db");
 
@@ -73,4 +73,8 @@ app.get("/get-crypto-data", async (request, response) => {
       .status(500)
       .json({ error: "An error occurred while fetching data" });
   }
+});
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
 });
