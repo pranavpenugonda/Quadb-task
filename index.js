@@ -38,12 +38,12 @@ app.get("/crypto", async (request, response) => {
     const tickers = res.data;
 
     const top10Tickers = Object.values(tickers).slice(0, 10);
-    // console.log(top10Tickers);
+    console.log(top10Tickers);
 
     for (const ticker of top10Tickers) {
       const { name, last, buy, sell, volume, base_unit } = ticker;
 
-      console.log(name, last, buy, sell, volume, base_unit);
+      //   console.log(name, last, buy, sell, volume, base_unit);
       const insertQuery = `insert into cryptos2 values('${name}',${last},${buy},${sell},${volume},'${base_unit}');`;
       try {
         await db.run(insertQuery);
